@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+./mk.db
+sudo make install

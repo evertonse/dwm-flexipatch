@@ -74,4 +74,7 @@ uninstall:
 		${DESTDIR}${MANPREFIX}/man1/dwm.1\
 		${DESTDIR}${PREFIX}/share/xsessions/dwm.desktop
 
-.PHONY: all options clean dist install uninstall
+push:
+	git add . && git commit -m "$$(date)${MSG}" && git push
+
+.PHONY: all options clean dist install uninstall push
