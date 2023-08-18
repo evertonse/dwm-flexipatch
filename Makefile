@@ -52,8 +52,10 @@ dist: clean
 	rm -rf dwm-${VERSION}
 
 install: all
+	# ./mk.db
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	cp -f dwm ${DESTDIR}${PREFIX}/bin
+
 ifdef YAJLLIBS
 	cp -f dwm-msg ${DESTDIR}${PREFIX}/bin
 endif
