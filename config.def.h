@@ -625,7 +625,7 @@ static const BarRule barrules[] = {
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
+static const int nmaster     = 2;    /* number of clients in master area */
 #if FLEXTILE_DELUXE_LAYOUT
 static const int nstack      = 0;    /* number of clients in primary stack area */
 #endif // FLEXTILE_DELUXE_LAYOUT
@@ -858,6 +858,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = {
 	"dmenu_run",
 	#if !NODMENU_PATCH
+  "-c", /* appear on center */
 	"-m", dmenumon,
 	#endif // NODMENU_PATCH
 	"-fn", dmenufont,
@@ -870,7 +871,12 @@ static const char *dmenucmd[] = {
 	#endif // BAR_DMENUMATCHTOP_PATCH
 	NULL
 };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]      = { "st", NULL };
+static const char *wificmd[]      = { "st","nmtui", NULL };
+static const char *explorercmd[]  = { "st","lf", NULL };
+static const char *printcmd[]     = { "flameshot", "gui", NULL };
+static const char *volumecmd[]    = { "st", "-e", "pulsemixer", NULL };
+static const char *bluetoothcmd[] = { "st", "-e", "bluetuith", NULL };
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
