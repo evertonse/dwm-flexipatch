@@ -1,4 +1,3 @@
-#include "patches.h"
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -16,7 +15,7 @@ static const unsigned int barborderpx    = 0;  /* border pixel of bar */
 #endif // BAR_BORDER_PATCH
 static const unsigned int snap           = 32;  /* snap pixel */
 #if SWALLOW_PATCH
-static const int swallowfloating         = 1;   /* 1 means swallow floating windows by default */
+static const int swallowfloating         = 0;   /* 1 means swallow floating windows by default */
 #endif // SWALLOW_PATCH
 #if BAR_TAGPREVIEW_PATCH
 static const int scalepreview            = 4;        /* Tag preview scaling */
@@ -163,20 +162,41 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #if BAR_PANGO_PATCH
 static const char font[]                 = "monospace 10";
 #else
-static const char *fonts[]               = { "monospace:size=10" };
+static const char *fonts[] = { 
+  "mono:pixelsize=12:antialias=true:autohint=true",
+  "NotoColorEmoji:pixelsize=11:antialias=true:autohint=true", 
+  "JetBrainsMonoNF:pixelsize=11:antialias=true:autohint=true" 
+  "Lekton\\ Nerd\\ Font\\ Complete\\ Mono:pixelsize=12:antialias=true:autohint=true",
+  "monospace:pixelsize=12:antialias=true:autohint=true",
+  "Lekton\\ Nerd\\ Font\\ Complete\\ Mono.ttf:pixelsize=11:antialias=true:autohint=true",
+  "Lekton Nerd Font Complete Mono.ttf:pixelsize=11:antialias=true:autohint=true",
+  "JetbrainsMonoNerdFonts:pixelsize=11:antialias=true:autohint=true",
+};
+
 #endif // BAR_PANGO_PATCH
-static const char dmenufont[]            = "monospace:size=10";
+static const char dmenufont[]            = "monospace:size=11";
 
 static char c000000[]                    = "#000000"; // placeholder value
 
+static const char col_gray1[]       = "#2D2D2D";
+static const char col_tab_bg[]      = "#4E4E4E";
+static const char col_tab_fg[]      = "#BBBBBB";
+static const char col_gray2[]       = "#373737";
+static const char col_gray3[]       = "#BBBBBB";
+static const char col_gray4[]       = "#1E1E1E";
+static const char col_cyan[]        = "#8db9e2";
+static const char col_hov_bg[]      = "#4E4E4E";
+static const char col_hov_fg[]      = "#9eCaF3";
+
+static const char hid[]             = "#8db9e2";
 static char normfgcolor[]                = "#bbbbbb";
 static char normbgcolor[]                = "#222222";
 static char normbordercolor[]            = "#444444";
 static char normfloatcolor[]             = "#db8fd9";
 
 static char selfgcolor[]                 = "#eeeeee";
-static char selbgcolor[]                 = "#005577";
-static char selbordercolor[]             = "#005577";
+static char selbgcolor[]                 = "#1E1E1E";
+static char selbordercolor[]             = "#4E4E4E";
 static char selfloatcolor[]              = "#005577";
 
 static char titlenormfgcolor[]           = "#bbbbbb";
@@ -652,6 +672,9 @@ static const int scrollargs[][2] = {
 };
 #endif // TAPRESIZE_PATCH
 
+#define SUPERKEY Mod4Mask
+#define ALTKEY Mod1Mask
+
 #if FLEXTILE_DELUXE_LAYOUT
 static const Layout layouts[] = {
 	/* symbol     arrange function, { nmaster, nstack, layout, master axis, stack axis, secondary stack axis, symbol func } */
@@ -659,7 +682,7 @@ static const Layout layouts[] = {
  	{ "><>",      NULL,             {0} },    /* no layout function means floating behavior */
 	{ "[M]",      flextile,         { -1, -1, NO_SPLIT, MONOCLE, MONOCLE, 0, NULL } }, // monocle
 	{ "|||",      flextile,         { -1, -1, SPLIT_VERTICAL, LEFT_TO_RIGHT, TOP_TO_BOTTOM, 0, NULL } }, // columns (col) layout
-	{ ">M>",      flextile,         { -1, -1, FLOATING_MASTER, LEFT_TO_RIGHT, LEFT_TO_RIGHT, 0, NULL } }, // floating master
+	{ ">M>",      flextile,         { -1, -1, FLOATING_MASTER, LEFT_TO_RIGHT,qLEFT_TO_RIGHT, 0, NULL } }, // floating master
 	{ "[D]",      flextile,         { -1, -1, SPLIT_VERTICAL, TOP_TO_BOTTOM, MONOCLE, 0, NULL } }, // deck
 	{ "TTT",      flextile,         { -1, -1, SPLIT_HORIZONTAL, LEFT_TO_RIGHT, LEFT_TO_RIGHT, 0, NULL } }, // bstack
 	{ "===",      flextile,         { -1, -1, SPLIT_HORIZONTAL, LEFT_TO_RIGHT, TOP_TO_BOTTOM, 0, NULL } }, // bstackhoriz
@@ -770,7 +793,7 @@ static const char *xkb_layouts[]  = {
 #endif // XKB_PATCH
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #if COMBO_PATCH && SWAPTAGS_PATCH && TAGOTHERMONITOR_PATCH
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      comboview,      {.ui = 1 << TAG} }, \
@@ -985,8 +1008,8 @@ static const Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_Left,       moveresize,             {.v = "0x 0y -25w 0h" } },
 	#endif // MOVERESIZE_PATCH
 	#if MOVESTACK_PATCH
-	{ MODKEY|ShiftMask,             XK_j,          movestack,              {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_k,          movestack,              {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_h,          movestack,              {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_l,          movestack,              {.i = -1 } },
 	#endif // MOVESTACK_PATCH
 	#if TRANSFER_PATCH
 	{ MODKEY,                       XK_x,          transfer,               {0} },
@@ -1054,7 +1077,7 @@ static const Key keys[] = {
 	#if BAR_WINTITLEACTIONS_PATCH
 	{ MODKEY|ControlMask,           XK_z,          showhideclient,         {0} },
 	#endif // BAR_WINTITLEACTIONS_PATCH
-	{ MODKEY|ShiftMask,             XK_c,          killclient,             {0} },
+	{ MODKEY,             XK_c,          killclient,             {0} },
 	#if KILLUNSEL_PATCH
 	{ MODKEY|ShiftMask,             XK_x,          killunsel,              {0} },
 	#endif // KILLUNSEL_PATCH
