@@ -1900,7 +1900,7 @@ drawbarwin(Bar *bar)
 	rx = lx = bar->borderpx;
 
 	drw_setscheme(drw, scheme[SchemeNorm]);
-	drw_rect(drw, lx, bar->borderpx, lw, bar->bh - 2 * bar->borderpx, 1, 1);
+	// drw_rect(drw, lx, bar->borderpx, lw, bar->bh - 2 * bar->borderpx, 1, 1);
 	for (r = 0; r < LENGTH(barrules); r++) {
 		br = &barrules[r];
 		if (br->bar != bar->idx || !br->widthfunc || (br->monitor == 'A' && bar->mon != selmon))
