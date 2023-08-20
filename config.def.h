@@ -78,7 +78,7 @@ static const char slopspawnstyle[]       = "-t 0 -c 0.92,0.85,0.69,0.3 -o"; /* d
 static const char slopresizestyle[]      = "-t 0 -c 0.92,0.85,0.69,0.3"; /* do NOT define -f (format) here */
 static const int riodraw_borders         = 0;  /* 0 or 1, indicates whether the area drawn using slop includes the window borders */
 #if SWALLOW_PATCH
-static const int riodraw_matchpid        = 1;  /* 0 or 1, indicates whether to match the PID of the client that was spawned with riospawn */
+static const int riodraw_matchpid        = 0;  /* 0 or 1, indicates whether to match the PID of the client that was spawned with riospawn */
 #endif // SWALLOW_PATCH
 #endif // RIODRAW_PATCH
 /* Status is to be shown on: -1 (all monitors), 0 (a specific monitor by index), 'A' (active monitor) */
@@ -521,14 +521,14 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.class = "Gimp", .tags = 1 << 4)
-	RULE(.class = "Firefox", .tags = 1 << 7 )
-	RULE(.class = "St", .tags = 0, .isterminal = 1)
+	RULE(.class = "Firefox", .tags = 1 << 7, .isterminal = 1)
+	RULE(.class = "St", .isterminal = 1)
 
 	#if RENAMED_SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
-	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
-	RULE(.instance = "st -e spterm", .tags = SPTAG(0), .isfloating = 1)
+	// RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
+	// RULE(.instance = "st -e spterm", .tags = SPTAG(0), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
 };
 
