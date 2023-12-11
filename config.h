@@ -1155,7 +1155,7 @@ static const Key keys[] = {
 	#endif // UNFLOATVISIBLE_PATCH
 	#if TOGGLEFULLSCREEN_PATCH
 	// { MODKEY,                       XK_y,          togglefullscreen,       {0} },
-	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscreen,  {0} },
 	#endif // TOGGLEFULLSCREEN_PATCH
 	#if !FAKEFULLSCREEN_PATCH && FAKEFULLSCREEN_CLIENT_PATCH
 	{ MODKEY|ShiftMask,             XK_f,      togglefakefullscreen,  {0} },

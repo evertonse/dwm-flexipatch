@@ -829,7 +829,7 @@
 #define NOBORDER_PATCH 1
 
 /* Enable modifying or removing dmenu in config.def.h which resulted previously in a
- * compilation error because two lines of code hardcode dmenu into dwm.
+ * compilation error beca1se two lines of code hardcode dmenu into dwm.
  * https://dwm.suckless.org/patches/nodmenu/
  */
 #define NODMENU_PATCH 0
@@ -898,7 +898,7 @@
 /* This patch provides a way to move clients up and down inside the client list.
  * https://dwm.suckless.org/patches/push/
  */
-#define PUSH_PATCH 0
+#define PUSH_PATCH 1
 
 /* This patch provides a way to move clients up and down inside the client list,
  * but does not push up or down into the master area (except that it does not take
@@ -1194,7 +1194,7 @@
  * Note that fancybar, awesomebar, bartabgroups and similar patches make the tab patch redundant.
  * https://dwm.suckless.org/patches/tab/
  */
-#define TAB_PATCH 0
+#define TAB_PATCH 1
 
 /* Adds keyboard shortcuts to move all (or only floating) windows from one tag to another.
  * https://dwm.suckless.org/patches/tagall/
@@ -1259,12 +1259,12 @@
 /* This patch allows you to toggle fullscreen on and off using a single shortcut key.
  * https://github.com/bakkeby/patches/blob/master/dwm/dwm-togglefullscreen-6.2.diff
  */
-#define TOGGLEFULLSCREEN_PATCH 0
+#define TOGGLEFULLSCREEN_PATCH 1
 
 /* This patch allows for the bar position (top or bottom) to be toggled during runtime.
  * https://dwm.suckless.org/patches/toggletopbar/
  */
-#define TOGGLETOPBAR_PATCH 0
+#define TOGGLETOPBAR_PATCH 1
 
 /* Minor patch that lets you use the same keyboard shortcut to toggle to the previous layout if the
  * designated layout is already active.
@@ -1276,7 +1276,7 @@
  * https://github.com/bakkeby/patches/wiki/togglelayout
  */
 
-#define TOGLELAYOUT_PATCH 0
+#define TOGLELAYOUT_PATCH 1
 
 /* Minor patch that lets you use the same keyboard shortcut to toggle to the previous tag if the
  * designated tag is already active.
