@@ -1,6 +1,6 @@
 *.o
 dwm
 dwm-msg
-config.h
-patches.h
+# config.h
+# patches.h
 *.cache

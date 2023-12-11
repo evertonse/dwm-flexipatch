@@ -58,6 +58,7 @@
    "-Os",
    "-I/usr/X11R6/include",
    "-I/usr/include/freetype2",
+   "-I/usr/include/yajl",
    "-D_DEFAULT_SOURCE",
    "-D_BSD_SOURCE",
    "-D_XOPEN_SOURCE=700L",
@@ -66,5 +67,27 @@
    "util.c"
   ],
   "file": "util.c"
+ },
+ {
+  "directory": "/home/excyber/code/dwm-flexipatch",
+  "arguments": [
+   "cc",
+   "-o",
+   "dwm-msg",
+   "patch/ipc/dwm-msg.c",
+   "-L/usr/X11R6/lib",
+   "-lX11",
+   "-lXinerama",
+   "-lfontconfig",
+   "-lXft",
+   "-lXrender",
+   "-lXext",
+   "-lX11-xcb",
+   "-lxcb",
+   "-lxcb-res",
+   "-lyajl",
+   "-lImlib2"
+  ],
+  "file": "patch/ipc/dwm-msg.c"
  }
 ]
