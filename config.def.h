@@ -338,7 +338,7 @@ static const unsigned int alphas[][3] = {
 };
 #endif // BAR_ALPHA_PATCH
 #if BAR_VTCOLORS_PATCH
-static const char title_bg_dark[]   = "#303030";
+static const char title_bg_dark[]   = "#202020";
 static const char title_bg_light[]  = "#fdfdfd";
 static const int color_ptrs[][ColCount] = {
 	/*                       fg      bg      border  float */
