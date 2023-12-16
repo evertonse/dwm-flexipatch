@@ -1,8 +1,34 @@
 dwm build options:
-CFLAGS   = -std=c99 -pedantic -Wall -Wno-unused-function -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2    -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION="6.4" -DXINERAMA
-LDFLAGS  = -L/usr/X11R6/lib -lX11 -lXinerama -lfontconfig -lXft  -lXrender   -lX11-xcb -lxcb -lxcb-res    -lImlib2 
+CFLAGS   = -std=c99 -pedantic -Wall -Wno-unused-function -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2 -I/usr/include/yajl   -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION="6.4" -DXINERAMA
+LDFLAGS  = -L/usr/X11R6/lib -lX11 -lXinerama -lfontconfig -lXft  -lXrender  -lXext -lX11-xcb -lxcb -lxcb-res   -lyajl -lImlib2 
 CC       = cc
-cc -c -std=c99 -pedantic -Wall -Wno-unused-function -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2    -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION=\"6.4\" -DXINERAMA drw.c
-cc -c -std=c99 -pedantic -Wall -Wno-unused-function -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2    -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION=\"6.4\" -DXINERAMA dwm.c
-cc -c -std=c99 -pedantic -Wall -Wno-unused-function -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2    -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION=\"6.4\" -DXINERAMA util.c
-cc -o dwm drw.o dwm.o util.o -L/usr/X11R6/lib -lX11 -lXinerama -lfontconfig -lXft  -lXrender   -lX11-xcb -lxcb -lxcb-res    -lImlib2 
+cc -c -std=c99 -pedantic -Wall -Wno-unused-function -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2 -I/usr/include/yajl   -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION=\"6.4\" -DXINERAMA drw.c
+cc -c -std=c99 -pedantic -Wall -Wno-unused-function -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2 -I/usr/include/yajl   -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION=\"6.4\" -DXINERAMA dwm.c
+In file included from dwm.c:852:
+config.h:4: warning: "TERMINAL" redefined
+    4 | #define TERMINAL "st"
+      | 
+dwm.c:604: note: this is the location of the previous definition
+  604 | #define TERMINAL , .isterminal = 1
+      | 
+config.h:912:20: warning: ‘bluetoothcmd’ defined but not used [-Wunused-variable]
+  912 | static const char *bluetoothcmd[] = { "st", "-e", "bluetuith", NULL };
+      |                    ^~~~~~~~~~~~
+config.h:911:20: warning: ‘volumecmd’ defined but not used [-Wunused-variable]
+  911 | static const char *volumecmd[]    = { "st", "-e", "pulsemixer", NULL };
+      |                    ^~~~~~~~~
+config.h:910:20: warning: ‘printcmd’ defined but not used [-Wunused-variable]
+  910 | static const char *printcmd[]     = { "flameshot", "gui", NULL };
+      |                    ^~~~~~~~
+config.h:909:20: warning: ‘explorercmd’ defined but not used [-Wunused-variable]
+  909 | static const char *explorercmd[]  = { "st","lf", NULL };
+      |                    ^~~~~~~~~~~
+config.h:908:20: warning: ‘wificmd’ defined but not used [-Wunused-variable]
+  908 | static const char *wificmd[]      = { "st","nmtui", NULL };
+      |                    ^~~~~~~
+config.h:147:12: warning: ‘tagindicatortype’ defined but not used [-Wunused-variable]
+  147 | static int tagindicatortype              = INDICATOR_TOP_LEFT_SQUARE;
+      |            ^~~~~~~~~~~~~~~~
+cc -c -std=c99 -pedantic -Wall -Wno-unused-function -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2 -I/usr/include/yajl   -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION=\"6.4\" -DXINERAMA util.c
+cc -o dwm drw.o dwm.o util.o -L/usr/X11R6/lib -lX11 -lXinerama -lfontconfig -lXft  -lXrender  -lXext -lX11-xcb -lxcb -lxcb-res   -lyajl -lImlib2 
+cc -o dwm-msg patch/ipc/dwm-msg.c -L/usr/X11R6/lib -lX11 -lXinerama -lfontconfig -lXft  -lXrender  -lXext -lX11-xcb -lxcb -lxcb-res   -lyajl -lImlib2 
